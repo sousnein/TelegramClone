@@ -6,6 +6,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:colorBackground">@color/colorAccent</item>
+        <item name="popupTheme">@style/actionMenu</item>
         <!-- MaterialDrawer specific values -->
         <item name="material_drawer_background">@color/material_drawer_background</item>
         <item name="material_drawer_primary_text">@color/material_drawer_primary_text</item>
@@ -22,6 +23,49 @@
     </style>
     <style name="AppThemeDark" parent="MaterialDrawerTheme">
       <!--TODO Тёмная тема -->
+    </style>
+<style name="actionMenu" parent="Theme.AppCompat.Light">
+    <item name="background">@color/colorAccent</item>
+    <item name="actionMenuTextColor">@color/black</item>
+</style>
+    <style name="settings_buttons">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/vertical_margin</item>
+        <item name="android:clickable">true</item>
+        <item name="background">@drawable/ripple_effect</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <style name="normal_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/normal_text</item>
+        <item name="android:layout_marginStart">@dimen/horizontal_margin</item>
+    </style>
+
+    <style name="label_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/md_blue_grey_100</item>
+        <item name="android:textSize">@dimen/small_text</item>
+    </style>
+
+    <style name="separator">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/md_blue_grey_100</item>
+        <item name="android:layout_marginStart">@dimen/horizontal_margin</item>
+        <item name="android:layout_marginEnd">@dimen/horizontal_margin</item>
+        <item name="android:layout_marginTop">@dimen/vertical_margin</item>
+    </style>
+
+    <style name="mainToolbar">
+        <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:background">@color/colorPrimary</item>
     </style>
 
 </resources>

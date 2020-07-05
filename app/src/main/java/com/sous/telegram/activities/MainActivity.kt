@@ -1,8 +1,9 @@
-package com.sous.telegram
+package com.sous.telegram.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
+import com.sous.telegram.R
 import com.sous.telegram.databinding.ActivityMainBinding
 import com.sous.telegram.ui.fragments.ChatsFragment
 import com.sous.telegram.ui.objects.AppDrawer
@@ -30,7 +31,8 @@ class MainActivity : AppCompatActivity() {
         mAppDrawer.create()
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.data_container,
+            .replace(
+                R.id.data_container,
                 ChatsFragment()
             )
             .commit()
