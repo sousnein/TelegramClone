@@ -1,5 +1,6 @@
 package com.sous.telegram.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
@@ -27,15 +28,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initFunc() {
-        setSupportActionBar(mToolbar)
-        mAppDrawer.create()
-        supportFragmentManager
-            .beginTransaction()
-            .replace(
-                R.id.data_container,
-                ChatsFragment()
-            )
-            .commit()
+
+
+        if (false) {
+            setSupportActionBar(mToolbar)
+            mAppDrawer.create()
+            supportFragmentManager
+                .beginTransaction()
+                .replace(
+                    R.id.data_container,
+                    ChatsFragment()
+                )
+                .commit()
+        } else {
+            val intent = Intent(this,RegisterActivity::class.java)
+            startActivity(intent)
+
+        }
 
     }
 
