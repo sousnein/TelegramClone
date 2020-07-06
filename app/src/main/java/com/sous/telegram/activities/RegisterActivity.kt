@@ -6,6 +6,8 @@ import androidx.appcompat.widget.Toolbar
 import com.sous.telegram.R
 import com.sous.telegram.databinding.ActivityRegisterBinding
 import com.sous.telegram.ui.fragments.EnterPhoneFragment
+import com.sous.telegram.utilits.initFirebase
+import com.sous.telegram.utilits.replaceFragment
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -17,6 +19,7 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mBinding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
+        initFirebase()
     }
 
     override fun onStart() {
@@ -24,10 +27,6 @@ class RegisterActivity : AppCompatActivity() {
         mToolbar = mBinding.registerToolbar
         setSupportActionBar(mToolbar)
         title = getString(R.string.register_title_your_phone)
-        supportFragmentManager
-            .beginTransaction()
-            .add(R.id.register_data_container,EnterPhoneFragment())
-            .commit()
-
+        replaceFragment(fragment = EnterPhoneFragment(),addStack = false)
     }
 }

@@ -40,6 +40,7 @@
     <EditText
         android:id="@+id/register_input_code"
         style="@style/editText"
+        android:layout_width="wrap_content"
         android:gravity="center"
         android:maxLength="6"
         android:hint= "@string/register_hint_degfault_code"

@@ -79,6 +79,7 @@
 
     <style name="editText">
         <item name="android:maxLines">1</item>
+        <item name="android:textColorHint">@color/md_blue_grey_500</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_margin">@dimen/horizontal_margin</item>

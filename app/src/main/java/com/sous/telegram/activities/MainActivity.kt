@@ -1,22 +1,25 @@
 package com.sous.telegram.activities
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
-import com.sous.telegram.R
+import com.google.firebase.auth.FirebaseAuth
 import com.sous.telegram.databinding.ActivityMainBinding
 import com.sous.telegram.ui.fragments.ChatsFragment
 import com.sous.telegram.ui.objects.AppDrawer
+import com.sous.telegram.utilits.AUTH
+import com.sous.telegram.utilits.initFirebase
+import com.sous.telegram.utilits.replaceActivity
+import com.sous.telegram.utilits.replaceFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityMainBinding
     private lateinit var mAppDrawer: AppDrawer
-
     private lateinit var mToolbar: Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AUTH = FirebaseAuth.getInstance()
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
     }
@@ -29,21 +32,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun initFunc() {
 
-
-        if (false) {
+        if (AUTH.currentUser!=null) {
             setSupportActionBar(mToolbar)
             mAppDrawer.create()
-            supportFragmentManager
-                .beginTransaction()
-                .replace(
-                    R.id.data_container,
-                    ChatsFragment()
-                )
-                .commit()
+            replaceFragment(ChatsFragment(),false)
         } else {
-            val intent = Intent(this,RegisterActivity::class.java)
-            startActivity(intent)
-
+            replaceActivity(RegisterActivity())
         }
 
     }
@@ -52,6 +46,7 @@ class MainActivity : AppCompatActivity() {
     private fun initFields() {
         mToolbar = mBinding.mainToolbar
         mAppDrawer = AppDrawer(mainActivity = this, toolbar = mToolbar)
+        initFirebase()
     }
 
 }
