@@ -31,18 +31,16 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/horizontal_margin"
             android:textSize="@dimen/normal_text"
-            android:text="@string/profile_name"
+            tools:text="@string/profile_name"
             android:textColor="@color/colorAccent"
             app:layout_constraintBottom_toBottomOf="@+id/settings_user_photo"
             app:layout_constraintStart_toEndOf="@+id/settings_user_photo"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/profile_status"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/status_online"
-            android:textSize="@dimen/small_text"
+            android:id="@+id/settings_status"
+            style="@style/label_text"
+            tools:text="@string/status_online"
             android:textColor="@color/colorAccentDark"
             app:layout_constraintStart_toStartOf="@+id/settings_full_name"
             app:layout_constraintTop_toBottomOf="@+id/settings_full_name" />
@@ -52,7 +50,7 @@
 
     <TextView
         android:id="@+id/settings_text_account"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/horizontal_margin"
         android:layout_marginTop="@dimen/vertical_large_margin"
@@ -73,18 +71,16 @@
         <TextView
             android:id="@+id/settings_phone_number"
             style="@style/normal_text"
-            android:text="@string/settings_phone"
+            tools:text="@string/settings_phone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/settings_label_phone_number"
             style="@style/label_text"
-            android:clickable="true"
             android:text="@string/settings_change_phone_number"
             app:layout_constraintStart_toStartOf="@+id/settings_phone_number"
-            app:layout_constraintTop_toBottomOf="@+id/settings_phone_number"
-            android:focusable="true" />
+            app:layout_constraintTop_toBottomOf="@+id/settings_phone_number" />
 
         <View
             style="@style/separator"
@@ -101,7 +97,7 @@
 
         <TextView
             android:id="@+id/settings_username"
-            android:text="@string/settings_default_login"
+            tools:text="@string/settings_default_login"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             style="@style/normal_text" />
@@ -129,7 +125,7 @@
 
         <TextView
             android:id="@+id/settings_bio"
-            android:text="@string/settings_bio"
+            tools:text="@string/settings_bio"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             style="@style/normal_text" />

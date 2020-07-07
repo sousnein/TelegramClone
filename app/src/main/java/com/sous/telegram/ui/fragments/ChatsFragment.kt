@@ -8,9 +8,7 @@ import android.view.ViewGroup
 import com.sous.telegram.R
 import com.sous.telegram.databinding.FragmentChatsBinding
 
-class ChatsFragment : BaseFragment(R.layout.fragment_chats) {
-
-
+class ChatsFragment : Fragment(R.layout.fragment_chats) {
 
     override fun onResume() {
         super.onResume()

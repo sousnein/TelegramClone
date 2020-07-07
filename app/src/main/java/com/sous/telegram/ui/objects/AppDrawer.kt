@@ -3,6 +3,7 @@ package com.sous.telegram.ui.objects
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
 import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.AccountHeaderBuilder
 import com.mikepenz.materialdrawer.Drawer
@@ -18,10 +19,30 @@ import com.sous.telegram.utilits.replaceFragment
 class AppDrawer(val mainActivity: AppCompatActivity, val toolbar: Toolbar) {
     private lateinit var mDrawer: Drawer
     private lateinit var mHeader: AccountHeader
+    private lateinit var mDrawerLayout: DrawerLayout
 
     fun create() {
         createHeader()
         createDrawer()
+        mDrawerLayout = mDrawer.drawerLayout
+    }
+
+    fun disableDrawer(){
+        mDrawer.actionBarDrawerToggle?.isDrawerIndicatorEnabled = false //Скрываем бургер
+        mainActivity.supportActionBar?.setDisplayHomeAsUpEnabled(true) //Включаем кнопку назад(на месте бургера)
+        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED) //Выбор режима блокировки Drawer(блокируем шторку в закрытом состоянии)
+        toolbar.setNavigationOnClickListener {
+            mainActivity.supportFragmentManager.popBackStack()
+        }
+    }
+
+    fun enableDrawer() {
+        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+        mainActivity.supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        mDrawer.actionBarDrawerToggle?.isDrawerIndicatorEnabled = true
+        toolbar.setNavigationOnClickListener {
+            mDrawer.openDrawer()
+        }
     }
 
 

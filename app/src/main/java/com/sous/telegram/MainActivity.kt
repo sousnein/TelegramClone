@@ -1,20 +1,19 @@
-package com.sous.telegram.activities
+package com.sous.telegram
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
 import com.google.firebase.auth.FirebaseAuth
+import com.sous.telegram.activities.RegisterActivity
 import com.sous.telegram.databinding.ActivityMainBinding
+import com.sous.telegram.models.User
 import com.sous.telegram.ui.fragments.ChatsFragment
 import com.sous.telegram.ui.objects.AppDrawer
-import com.sous.telegram.utilits.AUTH
-import com.sous.telegram.utilits.initFirebase
-import com.sous.telegram.utilits.replaceActivity
-import com.sous.telegram.utilits.replaceFragment
+import com.sous.telegram.utilits.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityMainBinding
-    private lateinit var mAppDrawer: AppDrawer
+    lateinit var mAppDrawer: AppDrawer
     private lateinit var mToolbar: Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,10 +31,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun initFunc() {
 
-        if (AUTH.currentUser!=null) {
+        if (AUTH.currentUser != null) {
             setSupportActionBar(mToolbar)
             mAppDrawer.create()
-            replaceFragment(ChatsFragment(),false)
+            replaceFragment(ChatsFragment(), false)
         } else {
             replaceActivity(RegisterActivity())
         }
@@ -47,6 +46,16 @@ class MainActivity : AppCompatActivity() {
         mToolbar = mBinding.mainToolbar
         mAppDrawer = AppDrawer(mainActivity = this, toolbar = mToolbar)
         initFirebase()
+        initUser()
+    }
+
+    private fun initUser() {
+        REF_DATABASE_ROOT.child(NODE_USERS).child(UID)  //Лезет в БД,чтобы скачать данные
+            //Конкретно этот слушатель проверяет БД единожды(при запуске)
+            .addListenerForSingleValueEvent(AppValueEventListener {
+
+                USER = it.getValue(User::class.java)?: User()  //null гарантированно не будет,тк поля User инициализированы в конструкторе,но мало ли
+            })
     }
 
 }

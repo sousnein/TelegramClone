@@ -48,7 +48,7 @@
     <style name="small_text">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/md_blue_grey_500</item>
+        <item name="android:textColor">@color/grey</item>
         <item name="android:textSize">@dimen/small_text</item>
         <item name="android:layout_marginStart">@dimen/horizontal_margin</item>
     </style>
@@ -56,7 +56,7 @@
     <style name="label_text">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/md_blue_grey_100</item>
+        <item name="android:textColor">@color/grey</item>
         <item name="android:textSize">@dimen/small_text</item>
     </style>
 
@@ -79,7 +79,8 @@
 
     <style name="editText">
         <item name="android:maxLines">1</item>
-        <item name="android:textColorHint">@color/md_blue_grey_500</item>
+        <item name="android:textSize">@dimen/normal_text</item>
+        <item name="android:textColorHint">@color/grey</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_margin">@dimen/horizontal_margin</item>
