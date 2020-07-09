@@ -1,5 +1,6 @@
 package com.sous.telegram.ui.fragments
 
+import ChangeUsernameFragment
 import android.view.*
 import com.sous.telegram.R
 import com.sous.telegram.MainActivity
@@ -24,7 +25,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
         settings_bio.text = USER.bio
         settings_username.text = USER.username
         settings_status.text = USER.status
-
+        settings_btn_change_username.setOnClickListener { replaceFragment(ChangeUsernameFragment()) }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

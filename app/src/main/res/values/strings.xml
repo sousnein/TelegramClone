@@ -22,4 +22,8 @@
     <string name="settings_hint_input_surname">Фамилия</string>
     <string name="settings_toast_name_is_empty">Имя не может быть пустым</string>
     <string name="toast_data_updated">Данные обновлены</string>
+    <string name="settings_hint_input_username">Ваш никнэйм</string>
+    <string name="toast_error">Ошибка</string>
+    <string name="toast_unpu_username_is_empty">Поле Пустое</string>
+    <string name="toast_username_already_exist">Пользователь уже существует</string>
 </resources>
