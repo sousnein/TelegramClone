@@ -26,4 +26,5 @@
     <string name="toast_error">Ошибка</string>
     <string name="toast_unpu_username_is_empty">Поле Пустое</string>
     <string name="toast_username_already_exist">Пользователь уже существует</string>
+    <string name="settings_change_bio_label">Введите ник латиницей от 3 до 9 символов</string>
 </resources>
