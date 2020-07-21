@@ -52,7 +52,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
 
             putImageToStorage(uri, path) {          //Загружаем картинку
                 getUrlFromStorage(path) {           //Получение URL картинки
-                    putUrlToDatabase(it){          //Записываем URL в БД
+                    putUrlToDatabase(it) {          //Записываем URL в БД
                         settings_user_photo.downloadAndSetImage(it)
                         showToast(getString(R.string.toast_data_updated))
                         USER.photoUrl = it
@@ -62,7 +62,6 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
             }
         }
     }
-
 
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

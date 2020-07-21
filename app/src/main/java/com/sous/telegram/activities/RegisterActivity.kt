@@ -1,7 +1,7 @@
 package com.sous.telegram.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.sous.telegram.R
 import com.sous.telegram.databinding.ActivityRegisterBinding
@@ -27,6 +27,6 @@ class RegisterActivity : AppCompatActivity() {
         mToolbar = mBinding.registerToolbar
         setSupportActionBar(mToolbar)
         title = getString(R.string.register_title_your_phone)
-        replaceFragment(fragment = EnterPhoneFragment(),addStack = false)
+        replaceFragment(fragment = EnterPhoneFragment(), addStack = false)
     }
 }

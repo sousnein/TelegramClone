@@ -88,6 +88,7 @@
             app:layout_constraintTop_toBottomOf="@+id/settings_label_phone_number" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/settings_btn_change_username"
         app:layout_constraintStart_toStartOf="parent"

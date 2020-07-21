@@ -1,4 +1,3 @@
-
 import com.sous.telegram.R
 import com.sous.telegram.ui.fragments.BaseChangeFragment
 import com.sous.telegram.utilits.*
@@ -7,7 +6,7 @@ import java.util.*
 
 class ChangeUsernameFragment : BaseChangeFragment(R.layout.fragment_change_username) {
 
-    lateinit var mNewUsername:String
+    lateinit var mNewUsername: String
 
     override fun onResume() {
         super.onResume()
@@ -18,14 +17,14 @@ class ChangeUsernameFragment : BaseChangeFragment(R.layout.fragment_change_usern
 
     override fun change() {
         mNewUsername = settings_input_username.text.toString().toLowerCase(Locale.getDefault())
-        if(mNewUsername.isEmpty()){
+        if (mNewUsername.isEmpty()) {
             showToast(getString(R.string.toast_unpu_username_is_empty))
-        }else{
+        } else {
             REF_DATABASE_ROOT.child(NODE_USERNAMES)
-                .addListenerForSingleValueEvent(AppValueEventListener{
-                    if(it.hasChild(mNewUsername)){
+                .addListenerForSingleValueEvent(AppValueEventListener {
+                    if (it.hasChild(mNewUsername)) {
                         showToast(getString(R.string.toast_username_already_exist))
-                    }else{
+                    } else {
                         changeUsername()
                     }
                 })
@@ -35,7 +34,7 @@ class ChangeUsernameFragment : BaseChangeFragment(R.layout.fragment_change_usern
     private fun changeUsername() {
         REF_DATABASE_ROOT.child(NODE_USERNAMES).child(mNewUsername).setValue(CURRENT_UID)
             .addOnCompleteListener {
-                if(it.isSuccessful){
+                if (it.isSuccessful) {
                     updateCurrentUsername()
                 }
             }
@@ -44,7 +43,7 @@ class ChangeUsernameFragment : BaseChangeFragment(R.layout.fragment_change_usern
     private fun deleteOldUsername() {
         REF_DATABASE_ROOT.child(NODE_USERNAMES).child(USER.username).removeValue()
             .addOnCompleteListener {
-                if (it.isSuccessful){
+                if (it.isSuccessful) {
                     USER.username = mNewUsername
                     fragmentManager?.popBackStack()
                 }
@@ -55,10 +54,10 @@ class ChangeUsernameFragment : BaseChangeFragment(R.layout.fragment_change_usern
         REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID).child(CHILD_USERNAME)
             .setValue(mNewUsername)
             .addOnCompleteListener {
-                if(it.isSuccessful){
+                if (it.isSuccessful) {
                     deleteOldUsername()
                     showToast(getString(R.string.toast_data_updated))
-                }else{
+                } else {
                     showToast(getString(R.string.toast_error))
                 }
             }

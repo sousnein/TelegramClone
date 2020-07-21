@@ -23,20 +23,21 @@ open class BaseChangeFragment(private val layout: Int) : Fragment(layout) {
         super.onStart()
         setHasOptionsMenu(true)
         APP_ACTIVITY.mAppDrawer.disableDrawer() //Выключаем Drawer,когда мы в одном из фрагментов Drawer
-        hideKeyboard()
+
     }
 
     override fun onStop() {
         super.onStop()
+        hideKeyboard()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        APP_ACTIVITY.menuInflater.inflate(R.menu.settings_menu_confirm,menu)
+        APP_ACTIVITY.menuInflater.inflate(R.menu.settings_menu_confirm, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.settings_confirm_change->change()
+        when (item.itemId) {
+            R.id.settings_confirm_change -> change()
         }
         return true
     }

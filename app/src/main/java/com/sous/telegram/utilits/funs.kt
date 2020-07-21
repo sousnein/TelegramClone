@@ -10,17 +10,18 @@ import androidx.fragment.app.Fragment
 import com.sous.telegram.R
 import com.squareup.picasso.Picasso
 
-fun showToast(message:String){
+fun showToast(message: String) {
     Toast.makeText(APP_ACTIVITY, message, Toast.LENGTH_SHORT).show()
 }
 
-fun AppCompatActivity.replaceActivity(activity: AppCompatActivity){
+fun AppCompatActivity.replaceActivity(activity: AppCompatActivity) {
     val intent = Intent(this, activity::class.java)
     startActivity(intent)
     this.finish()
 }
-fun AppCompatActivity.replaceFragment(fragment: Fragment,addStack:Boolean = true){
-    if(addStack) {
+
+fun AppCompatActivity.replaceFragment(fragment: Fragment, addStack: Boolean = true) {
+    if (addStack) {
         supportFragmentManager
             .beginTransaction()
             .addToBackStack(null)
@@ -29,7 +30,7 @@ fun AppCompatActivity.replaceFragment(fragment: Fragment,addStack:Boolean = true
                 fragment
             )
             .commit()
-    }else{
+    } else {
         supportFragmentManager
             .beginTransaction()
             .replace(
@@ -39,7 +40,8 @@ fun AppCompatActivity.replaceFragment(fragment: Fragment,addStack:Boolean = true
             .commit()
     }
 }
-fun Fragment.replaceFragment(fragment: Fragment){
+
+fun Fragment.replaceFragment(fragment: Fragment) {
     fragmentManager
         ?.beginTransaction()
         ?.addToBackStack(null)
@@ -49,12 +51,14 @@ fun Fragment.replaceFragment(fragment: Fragment){
         )
         ?.commit()
 }
-fun hideKeyboard(){
+
+fun hideKeyboard() {
     val imm: InputMethodManager = APP_ACTIVITY.getSystemService(Context.INPUT_METHOD_SERVICE)
             as InputMethodManager
-    imm.hideSoftInputFromWindow(APP_ACTIVITY.window.decorView.windowToken,0)
+    imm.hideSoftInputFromWindow(APP_ACTIVITY.window.decorView.windowToken, 0)
 }
-fun ImageView.downloadAndSetImage(url:String){
+
+fun ImageView.downloadAndSetImage(url: String) {
     Picasso.get()
         .load(url)
         .fit()

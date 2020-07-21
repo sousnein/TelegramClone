@@ -5,8 +5,8 @@ import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
-import com.sous.telegram.R
 import com.sous.telegram.MainActivity
+import com.sous.telegram.R
 import com.sous.telegram.activities.RegisterActivity
 import com.sous.telegram.utilits.AUTH
 import com.sous.telegram.utilits.replaceActivity

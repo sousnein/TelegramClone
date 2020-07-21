@@ -4,8 +4,6 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.view.View
 import android.widget.ImageView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.AccountHeaderBuilder
@@ -18,12 +16,14 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem
 import com.mikepenz.materialdrawer.util.AbstractDrawerImageLoader
 import com.mikepenz.materialdrawer.util.DrawerImageLoader
 import com.sous.telegram.R
+import com.sous.telegram.ui.fragments.ContactsFragment
 import com.sous.telegram.ui.fragments.SettingsFragment
+import com.sous.telegram.utilits.APP_ACTIVITY
 import com.sous.telegram.utilits.USER
 import com.sous.telegram.utilits.downloadAndSetImage
 import com.sous.telegram.utilits.replaceFragment
 
-class AppDrawer(val mainActivity: AppCompatActivity, val toolbar: Toolbar) {
+class AppDrawer{
     private lateinit var mDrawer: Drawer
     private lateinit var mHeader: AccountHeader
     private lateinit var mDrawerLayout: DrawerLayout
@@ -36,28 +36,28 @@ class AppDrawer(val mainActivity: AppCompatActivity, val toolbar: Toolbar) {
         mDrawerLayout = mDrawer.drawerLayout
     }
 
-    fun disableDrawer(){
+    fun disableDrawer() {
         mDrawer.actionBarDrawerToggle?.isDrawerIndicatorEnabled = false //Скрываем бургер
-        mainActivity.supportActionBar?.setDisplayHomeAsUpEnabled(true) //Включаем кнопку назад(на месте бургера)
+        APP_ACTIVITY.supportActionBar?.setDisplayHomeAsUpEnabled(true) //Включаем кнопку назад(на месте бургера)
         mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED) //Выбор режима блокировки Drawer(блокируем шторку в закрытом состоянии)
-        toolbar.setNavigationOnClickListener {
-            mainActivity.supportFragmentManager.popBackStack()
+        APP_ACTIVITY.mToolbar.setNavigationOnClickListener {
+            APP_ACTIVITY.supportFragmentManager.popBackStack()
         }
     }
 
     fun enableDrawer() {
         mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
-        mainActivity.supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        APP_ACTIVITY.supportActionBar?.setDisplayHomeAsUpEnabled(false)
         mDrawer.actionBarDrawerToggle?.isDrawerIndicatorEnabled = true
-        toolbar.setNavigationOnClickListener {
+        APP_ACTIVITY.mToolbar.setNavigationOnClickListener {
             mDrawer.openDrawer()
         }
     }
 
 
     private fun createDrawer() {
-        mDrawer = DrawerBuilder().withActivity(mainActivity)
-            .withToolbar(toolbar)
+        mDrawer = DrawerBuilder().withActivity(APP_ACTIVITY)
+            .withToolbar(APP_ACTIVITY.mToolbar)
             .withActionBarDrawerToggle(true)
             .withSelectedItem(-1)
             .withAccountHeader(mHeader)
@@ -122,16 +122,22 @@ class AppDrawer(val mainActivity: AppCompatActivity, val toolbar: Toolbar) {
                     position: Int,
                     drawerItem: IDrawerItem<*>
                 ): Boolean {
-                    when (position) {
-                        7 -> mainActivity.replaceFragment(SettingsFragment())
-                    }
+                    clickToItem(position)
                     return false
                 }
 
             })
             .build()
     }
-        //Создаём header
+
+    private fun clickToItem(position: Int) {
+        when (position) {
+            4 -> APP_ACTIVITY.replaceFragment(ContactsFragment())
+            7 -> APP_ACTIVITY.replaceFragment(SettingsFragment())
+        }
+    }
+
+    //Создаём header
     private fun createHeader() {
         mCurrentProfile = ProfileDrawerItem()
             .withName(USER.fullname)
@@ -139,14 +145,14 @@ class AppDrawer(val mainActivity: AppCompatActivity, val toolbar: Toolbar) {
             .withIcon(USER.photoUrl)
             .withIdentifier(200)
         mHeader = AccountHeaderBuilder()
-            .withActivity(mainActivity)
+            .withActivity(APP_ACTIVITY)
             .withHeaderBackground(R.drawable.header)
             .addProfiles(
                 mCurrentProfile
             ).build()
     }
 
-    fun updateHeader(){
+    fun updateHeader() {
         mCurrentProfile
             .withName(USER.fullname)
             .withEmail(USER.phone)
@@ -154,8 +160,8 @@ class AppDrawer(val mainActivity: AppCompatActivity, val toolbar: Toolbar) {
         mHeader.updateProfile(mCurrentProfile)
     }
 
-    private fun initLoader(){
-        DrawerImageLoader.init(object :AbstractDrawerImageLoader(){
+    private fun initLoader() {
+        DrawerImageLoader.init(object : AbstractDrawerImageLoader() {
             override fun set(imageView: ImageView, uri: Uri, placeholder: Drawable) {
                 imageView.downloadAndSetImage(uri.toString())
             }

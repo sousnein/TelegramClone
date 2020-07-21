@@ -28,10 +28,13 @@ android {
 dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
 
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
     api 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
 
+    implementation 'com.firebaseui:firebase-ui-database:6.2.1'
     implementation 'com.google.firebase:firebase-auth-ktx:19.3.2'
-    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
 
     implementation "com.mikepenz:materialdrawer:7.0.0"
     implementation "com.mikepenz:materialdrawer-nav:7.0.0"
