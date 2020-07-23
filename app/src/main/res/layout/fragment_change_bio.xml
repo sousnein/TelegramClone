@@ -8,7 +8,7 @@
 
     <EditText
         android:id="@+id/settings_input_bio"
-        style="@style/editText"
+        style="@style/edit_text"
         android:hint="@string/settings_bio"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"

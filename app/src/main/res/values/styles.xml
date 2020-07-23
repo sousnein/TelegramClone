@@ -42,7 +42,7 @@
     <style name="settings_buttons">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">@dimen/vertical_margin</item>
+        <item name="android:layout_marginTop">@dimen/app_small_margin</item>
         <item name="android:clickable">true</item>
         <item name="background">@drawable/ripple_effect</item>
         <item name="android:focusable">true</item>
@@ -53,7 +53,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">@dimen/normal_text</item>
-        <item name="android:layout_marginStart">@dimen/horizontal_margin</item>
+        <item name="android:layout_marginStart">@dimen/app_margin</item>
     </style>
 
     <style name="small_text">
@@ -61,7 +61,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/grey</item>
         <item name="android:textSize">@dimen/small_text</item>
-        <item name="android:layout_marginStart">@dimen/horizontal_margin</item>
+        <item name="android:layout_marginStart">@dimen/app_margin</item>
     </style>
 
     <style name="label_text">
@@ -75,9 +75,9 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>
         <item name="android:background">@color/md_blue_grey_100</item>
-        <item name="android:layout_marginStart">@dimen/horizontal_margin</item>
-        <item name="android:layout_marginEnd">@dimen/horizontal_margin</item>
-        <item name="android:layout_marginTop">@dimen/vertical_margin</item>
+        <item name="android:layout_marginStart">@dimen/app_margin</item>
+        <item name="android:layout_marginEnd">@dimen/app_margin</item>
+        <item name="android:layout_marginTop">@dimen/app_small_margin</item>
     </style>
 
     <style name="mainToolbar">
@@ -88,13 +88,13 @@
     </style>
 
 
-    <style name="editText">
+    <style name="edit_text">
         <item name="android:maxLines">1</item>
         <item name="android:textSize">@dimen/normal_text</item>
         <item name="android:textColorHint">@color/grey</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_margin">@dimen/horizontal_margin</item>
+        <item name="android:layout_margin">@dimen/app_margin</item>
         <item name="android:padding">@dimen/app_padding</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:inputType">phone</item>

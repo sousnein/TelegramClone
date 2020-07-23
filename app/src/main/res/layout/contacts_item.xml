@@ -10,7 +10,7 @@
         android:id="@+id/contact_photo"
         android:layout_width="@dimen/settings_user_photo_width"
         android:layout_height="@dimen/settings_user_photo_height"
-        android:layout_marginStart="@dimen/horizontal_margin"
+        android:layout_marginStart="@dimen/app_margin"
         android:src="@drawable/profile_pic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

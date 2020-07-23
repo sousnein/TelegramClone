@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="horizontal_margin">16dp</dimen>
+    <dimen name="app_margin">16dp</dimen>
     <dimen name="normal_text">16sp</dimen>
     <dimen name="small_text">14sp</dimen>
+    <dimen name="very_small_text">12sp</dimen>
     <dimen name="vertical_large_margin">16dp</dimen>
-    <dimen name="vertical_margin">10dp</dimen>
+    <dimen name="app_small_margin">10dp</dimen>
     <!--SettingsFragment-->
     <dimen name="settings_user_photo_width">55dp</dimen>
     <dimen name="settings_user_photo_height">55dp</dimen>
@@ -14,5 +15,6 @@
     <dimen name="settings_btn_change_photo_height">45dp</dimen>
     <dimen name="settings_ripple_effect_radius">4dp</dimen>
     <dimen name="app_padding">10dp</dimen>
+    <dimen name="toolbar_image_width_height">45dp</dimen>
 
 </resources>

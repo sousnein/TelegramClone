@@ -8,7 +8,7 @@
 
     <EditText
         android:id="@+id/settings_input_name"
-        style="@style/editText"
+        style="@style/edit_text"
         android:hint="@string/settings_hint_input_name"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,7 +17,7 @@
 
     <EditText
         android:id="@+id/settings_input_surname"
-        style="@style/editText"
+        style="@style/edit_text"
         android:hint="@string/settings_hint_input_surname"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"

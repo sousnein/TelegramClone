@@ -12,7 +12,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        style="@style/editText" />
+        style="@style/edit_text" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/register_btn_next"
@@ -22,7 +22,7 @@
         android:src="@drawable/ic_btn_next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="@dimen/horizontal_margin" />
+        android:layout_margin="@dimen/app_margin" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
