@@ -9,13 +9,13 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.sous.telegram.models.CommonModel
-import com.sous.telegram.models.User
+import com.sous.telegram.models.UserModel
 import java.util.*
 
 lateinit var AUTH: FirebaseAuth
 lateinit var CURRENT_UID: String
 lateinit var REF_DATABASE_ROOT: DatabaseReference
-lateinit var USER: User
+lateinit var USER: UserModel
 lateinit var REF_STORAGE_ROOT: StorageReference
 
 const val NODE_USERS = "users"
@@ -35,7 +35,7 @@ const val CHILD_STATE = "state"
 fun initFirebase() {
     AUTH = FirebaseAuth.getInstance()
     REF_DATABASE_ROOT = FirebaseDatabase.getInstance().reference
-    USER = User()
+    USER = UserModel()
     CURRENT_UID = AUTH.currentUser?.uid.toString()
     REF_STORAGE_ROOT = FirebaseStorage.getInstance().reference
 }
@@ -63,8 +63,8 @@ inline fun initUser(crossinline function: () -> Unit) {
     REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID)  //Лезет в БД,чтобы скачать данные
         //Конкретно этот слушатель проверяет БД единожды(при запуске)
         .addListenerForSingleValueEvent(AppValueEventListener {
-            USER = it.getValue(User::class.java)
-                ?: User()  //null гарантированно не будет,тк поля User инициализированы в конструкторе,но мало ли
+            USER = it.getValue(UserModel::class.java)
+                ?: UserModel()  //null гарантированно не будет,тк поля User инициализированы в конструкторе,но мало ли
             if (USER.username.isEmpty()) {
                 USER.username = CURRENT_UID
             }
@@ -98,7 +98,7 @@ fun initContacts() {
         updatePhonesToDatabase(arrayContacts)
     }
 }
-
+//Добавляет номер телефона с id в БД
 fun updatePhonesToDatabase(arrayContacts: ArrayList<CommonModel>) {
     REF_DATABASE_ROOT.child(NODE_PHONES).addListenerForSingleValueEvent(AppValueEventListener {
         it.children.forEach { snapshot ->
@@ -115,6 +115,9 @@ fun updatePhonesToDatabase(arrayContacts: ArrayList<CommonModel>) {
         }
     })
 }
-
+//Преобразует данные из БД в модель CommonModel
  fun DataSnapshot.getCommonModel(): CommonModel =
     this.getValue(CommonModel::class.java)?: CommonModel()
+
+fun DataSnapshot.getUserModel(): UserModel =
+    this.getValue(UserModel::class.java)?: UserModel()
