@@ -59,11 +59,15 @@ class ContactsFragment : BaseFragment(R.layout.fragment_contacts) {
                 mRefUsersListener = AppValueEventListener {
                     //Создаём новую модель,чтобы забрать данные из NODE_USERS
                     val contact = it.getCommonModel()
-                    holder.name.text = contact.fullname
+
+                    if (contact.fullname.isEmpty()){
+                        holder.name.text = model.fullname
+                    } else holder.name.text = contact.fullname
+
                     holder.photo.downloadAndSetImage(contact.photoUrl)
                     holder.status.text = contact.state
                     holder.itemView.setOnClickListener {
-                        replaceFragment(SingleChatFragment(contact))
+                        replaceFragment(SingleChatFragment(model))
                     }
                 }
 

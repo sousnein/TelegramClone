@@ -14,13 +14,13 @@ class SingleChatFragment(private val contact: CommonModel) : BaseFragment(R.layo
 
     private lateinit var mListenerInfoToolbar:AppValueEventListener
     private lateinit var mReceivingUser: UserModel
-    private lateinit var mToobarInfo:View
+    private lateinit var mToolbarInfo:View
     private lateinit var mRefUser:DatabaseReference
 
     override fun onResume() {
         super.onResume()
-        mToobarInfo = APP_ACTIVITY.mToolbar.toolbar_info
-        mToobarInfo.visibility = View.VISIBLE
+        mToolbarInfo = APP_ACTIVITY.mToolbar.toolbar_info
+        mToolbarInfo.visibility = View.VISIBLE
         mListenerInfoToolbar = AppValueEventListener {
             mReceivingUser = it.getUserModel()
             initInfoToolbar()
@@ -31,15 +31,18 @@ class SingleChatFragment(private val contact: CommonModel) : BaseFragment(R.layo
     }
 
     private fun initInfoToolbar() {
-        mToobarInfo.toolbar_chat_image.downloadAndSetImage(mReceivingUser.photoUrl)
-        mToobarInfo.toolbar_chat_fullname.text = mReceivingUser.fullname
-        mToobarInfo.toolbar_chat_status.text = mReceivingUser.state
+        if (mReceivingUser.fullname.isEmpty()) {
+            mToolbarInfo.toolbar_chat_fullname.text = contact.fullname
+        } else mToolbarInfo.toolbar_chat_fullname.text = mReceivingUser.fullname
+
+        mToolbarInfo.toolbar_chat_image.downloadAndSetImage(mReceivingUser.photoUrl)
+        mToolbarInfo.toolbar_chat_status.text = mReceivingUser.state
 
     }
 
     override fun onPause() {
         super.onPause()
-        mToobarInfo.visibility = View.GONE
+        mToolbarInfo.visibility = View.GONE
         mRefUser.removeEventListener(mListenerInfoToolbar)
     }
 }
