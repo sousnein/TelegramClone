@@ -17,6 +17,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
 
     override fun onResume() {
         super.onResume()
+        APP_ACTIVITY.title = "Настройки"
         setHasOptionsMenu(true)
         initFields()
     }

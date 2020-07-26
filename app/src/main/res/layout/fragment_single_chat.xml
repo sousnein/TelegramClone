@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.SingleChatFragment">
+    tools:context=".ui.fragments.single_chat.SingleChatFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:background="@color/blue"
@@ -28,12 +28,12 @@
         android:textColorHint="@color/grey"
         android:hint="Сообщение"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/ic_send"
+        app:layout_constraintEnd_toStartOf="@id/chat_btn_send_message"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/ic_send"
-        android:layout_width="30dp"
+        android:id="@+id/chat_btn_send_message"
+        android:layout_width="25dp"
         android:layout_height="0dp"
         android:layout_marginEnd="@dimen/app_small_margin"
         android:src="@drawable/ic_send"
