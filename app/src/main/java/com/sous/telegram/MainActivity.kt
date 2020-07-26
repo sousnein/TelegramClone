@@ -6,9 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import com.google.firebase.auth.FirebaseAuth
-import com.sous.telegram.activities.RegisterActivity
+import com.sous.telegram.database.AUTH
+import com.sous.telegram.database.initFirebase
+import com.sous.telegram.database.initUser
 import com.sous.telegram.databinding.ActivityMainBinding
-import com.sous.telegram.ui.fragments.ChatsFragment
+import com.sous.telegram.ui.fragments.MainFragment
+import com.sous.telegram.ui.fragments.register.EnterPhoneFragment
 import com.sous.telegram.ui.objects.AppDrawer
 import com.sous.telegram.utilits.*
 import kotlinx.coroutines.CoroutineScope
@@ -39,13 +42,12 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun initFunc() {
-
+        setSupportActionBar(mToolbar)
         if (AUTH.currentUser != null) {
-            setSupportActionBar(mToolbar)
             mAppDrawer.create()
-            replaceFragment(ChatsFragment(), false)
+            replaceFragment(MainFragment(), false)
         } else {
-            replaceActivity(RegisterActivity())
+            replaceFragment(EnterPhoneFragment(),false)
         }
 
     }

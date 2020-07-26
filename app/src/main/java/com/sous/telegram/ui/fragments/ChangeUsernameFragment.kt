@@ -1,12 +1,14 @@
 import com.sous.telegram.R
+import com.sous.telegram.database.*
 import com.sous.telegram.ui.fragments.BaseChangeFragment
-import com.sous.telegram.utilits.*
+import com.sous.telegram.utilits.AppValueEventListener
+import com.sous.telegram.utilits.showToast
 import kotlinx.android.synthetic.main.fragment_change_username.*
 import java.util.*
 
 class ChangeUsernameFragment : BaseChangeFragment(R.layout.fragment_change_username) {
 
-    lateinit var mNewUsername: String
+    private lateinit var mNewUsername: String
 
     override fun onResume() {
         super.onResume()
@@ -32,35 +34,16 @@ class ChangeUsernameFragment : BaseChangeFragment(R.layout.fragment_change_usern
     }
 
     private fun changeUsername() {
-        REF_DATABASE_ROOT.child(NODE_USERNAMES).child(mNewUsername).setValue(CURRENT_UID)
+        REF_DATABASE_ROOT.child(NODE_USERNAMES).child(mNewUsername).setValue(
+            CURRENT_UID
+        )
             .addOnCompleteListener {
                 if (it.isSuccessful) {
-                    updateCurrentUsername()
+                    updateCurrentUsername(newUsername = mNewUsername)
                 }
             }
     }
 
-    private fun deleteOldUsername() {
-        REF_DATABASE_ROOT.child(NODE_USERNAMES).child(USER.username).removeValue()
-            .addOnCompleteListener {
-                if (it.isSuccessful) {
-                    USER.username = mNewUsername
-                    fragmentManager?.popBackStack()
-                }
-            }
-    }
 
-    private fun updateCurrentUsername() {
-        REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID).child(CHILD_USERNAME)
-            .setValue(mNewUsername)
-            .addOnCompleteListener {
-                if (it.isSuccessful) {
-                    deleteOldUsername()
-                    showToast(getString(R.string.toast_data_updated))
-                } else {
-                    showToast(getString(R.string.toast_error))
-                }
-            }
-    }
 }
 

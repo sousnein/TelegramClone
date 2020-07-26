@@ -7,7 +7,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import com.sous.telegram.R
-import com.sous.telegram.activities.RegisterActivity
+import com.sous.telegram.database.*
 import com.sous.telegram.utilits.*
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
@@ -48,10 +48,15 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
             && resultCode == Activity.RESULT_OK && data != null
         ) {
             val uri = CropImage.getActivityResult(data).uri         //Получаем uri
-            val path = REF_STORAGE_ROOT.child(FOLDER_PROFILE_IMAGE)         //Путь
+            val path = REF_STORAGE_ROOT.child(
+                FOLDER_PROFILE_IMAGE
+            )         //Путь
                 .child(CURRENT_UID)
 
-            putImageToStorage(uri, path) {          //Загружаем картинку
+            putImageToStorage(
+                uri,
+                path
+            ) {          //Загружаем картинку
                 getUrlFromStorage(path) {           //Получение URL картинки
                     putUrlToDatabase(it) {          //Записываем URL в БД
                         settings_user_photo.downloadAndSetImage(it)
@@ -77,7 +82,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
             R.id.settings_menu_exit -> {
                 AppStates.updateState(AppStates.OFFLINE)
                 AUTH.signOut()
-                APP_ACTIVITY.replaceActivity(RegisterActivity())
+                restartActivity()
             }
         }
         return true

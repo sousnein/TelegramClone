@@ -9,9 +9,13 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.database.DatabaseReference
 import com.sous.telegram.R
+import com.sous.telegram.database.*
 import com.sous.telegram.models.CommonModel
 import com.sous.telegram.ui.fragments.single_chat.SingleChatFragment
-import com.sous.telegram.utilits.*
+import com.sous.telegram.utilits.APP_ACTIVITY
+import com.sous.telegram.utilits.AppValueEventListener
+import com.sous.telegram.utilits.downloadAndSetImage
+import com.sous.telegram.utilits.replaceFragment
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.contacts_item.view.*
 import kotlinx.android.synthetic.main.fragment_contacts.*
@@ -35,7 +39,9 @@ class ContactsFragment : BaseFragment(R.layout.fragment_contacts) {
 
     private fun initRecycleView() {
         mRecyclerView = contacts_recycler_view
-        mRefContacts = REF_DATABASE_ROOT.child(NODE_PHONES_CONTACTS).child(CURRENT_UID)
+        mRefContacts = REF_DATABASE_ROOT.child(
+            NODE_PHONES_CONTACTS
+        ).child(CURRENT_UID)
 
         val options = FirebaseRecyclerOptions.Builder<CommonModel>()
             .setQuery(mRefContacts, CommonModel::class.java)
@@ -55,7 +61,9 @@ class ContactsFragment : BaseFragment(R.layout.fragment_contacts) {
                 position: Int,
                 model: CommonModel
             ) {
-                mRefUsers = REF_DATABASE_ROOT.child(NODE_USERS).child(model.id)
+                mRefUsers = REF_DATABASE_ROOT.child(
+                    NODE_USERS
+                ).child(model.id)
 
                 mRefUsersListener = AppValueEventListener {
                     //Создаём новую модель,чтобы забрать данные из NODE_USERS

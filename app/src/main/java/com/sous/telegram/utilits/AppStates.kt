@@ -1,5 +1,7 @@
 package com.sous.telegram.utilits
 
+import com.sous.telegram.database.*
+
 enum class AppStates(val state: String) {
     ONLINE("В сети"),
     OFFLINE("Был недавно"),
@@ -8,7 +10,11 @@ enum class AppStates(val state: String) {
     companion object {
         fun updateState(appStates: AppStates) {
             if (AUTH.currentUser!=null) {
-                REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID).child(CHILD_STATE)
+                REF_DATABASE_ROOT.child(
+                    NODE_USERS
+                ).child(CURRENT_UID).child(
+                    CHILD_STATE
+                )
                     .setValue(appStates.state)          //Обновляем статус
                     .addOnSuccessListener {
                         USER.state = appStates.state        //Показываем изменения пользователю

@@ -25,9 +25,8 @@ open class BaseFragment(private val layout: Int) : Fragment(layout) {
         APP_ACTIVITY.mAppDrawer.disableDrawer() //Выключаем Drawer,когда мы в одном из фрагментов Drawer
     }
 
-    override fun onStop() {
-        super.onStop()
-        APP_ACTIVITY.mAppDrawer.enableDrawer() //Включаем Drawer,при нажатии кнопки назад
+    override fun onPause() {
+        super.onPause()
         hideKeyboard()
     }
 }
