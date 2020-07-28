@@ -143,11 +143,10 @@ fun sendMessage(message: String, receivingUserID: String, typeText: String, func
     val messageKey = REF_DATABASE_ROOT.child(refDialogUser).push().key
 
     val mapMessage = hashMapOf<String, Any>()
-    mapMessage[CHILD_FROM] =
-        CURRENT_UID
-    mapMessage[CHILD_TYPE] =
-        TYPE_TEXT
+    mapMessage[CHILD_FROM] = CURRENT_UID
+    mapMessage[CHILD_TYPE] = TYPE_TEXT
     mapMessage[CHILD_TEXT] = message
+    mapMessage[CHILD_ID] = messageKey.toString()
     mapMessage[CHILD_TIMESTAMP] = ServerValue.TIMESTAMP
 
     val mapDialog = hashMapOf<String, Any>()
@@ -186,7 +185,7 @@ fun deleteOldUsername(newUsername: String) {
             USER.username = newUsername
             APP_ACTIVITY.supportFragmentManager.popBackStack()
         }
-        .addOnFailureListener {showToast(it.message.toString())}
+        .addOnFailureListener { showToast(it.message.toString()) }
 }
 
 fun setBioToDatabase(newBio: String) {
@@ -198,7 +197,7 @@ fun setBioToDatabase(newBio: String) {
             USER.bio = newBio
             APP_ACTIVITY.supportFragmentManager.popBackStack()
         }
-        .addOnFailureListener {showToast(it.message.toString())}
+        .addOnFailureListener { showToast(it.message.toString()) }
 }
 
 fun setNameToDatabase(fullname: String) {

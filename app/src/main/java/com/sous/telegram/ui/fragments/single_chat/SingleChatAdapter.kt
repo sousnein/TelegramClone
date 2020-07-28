@@ -7,21 +7,19 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.sous.telegram.R
-import com.sous.telegram.models.CommonModel
 import com.sous.telegram.database.CURRENT_UID
+import com.sous.telegram.models.CommonModel
 import com.sous.telegram.utilits.asTime
 import kotlinx.android.synthetic.main.message_item.view.*
 
 class SingleChatAdapter : RecyclerView.Adapter<SingleChatAdapter.SingleChatHolder>() {
-
-    private var mListMessagesCache = emptyList<CommonModel>()
+    private var mListMessagesCache = mutableListOf<CommonModel>()
 
     class SingleChatHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val blockUserMessage: ConstraintLayout = view.block_user_message
+        val blocUserMessage: ConstraintLayout = view.block_user_message
         val chatUserMessage: TextView = view.chat_user_message
         val chatUserMessageTime: TextView = view.chat_user_message_time
-
-        val blockReceivedMessage: ConstraintLayout = view.block_received_message
+        val blocReceivedMessage: ConstraintLayout = view.block_received_message
         val chatReceivedMessage: TextView = view.chat_received_message
         val chatReceivedMessageTime: TextView = view.chat_received_message_time
     }
@@ -29,30 +27,45 @@ class SingleChatAdapter : RecyclerView.Adapter<SingleChatAdapter.SingleChatHolde
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SingleChatHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.message_item, parent, false)
         return SingleChatHolder(view)
-
     }
 
     override fun getItemCount(): Int = mListMessagesCache.size
     override fun onBindViewHolder(holder: SingleChatHolder, position: Int) {
         if (mListMessagesCache[position].from == CURRENT_UID) {
-            holder.blockUserMessage.visibility = View.VISIBLE
-            holder.blockReceivedMessage.visibility = View.GONE
+            holder.blocUserMessage.visibility = View.VISIBLE
+            holder.blocReceivedMessage.visibility = View.GONE
             holder.chatUserMessage.text = mListMessagesCache[position].text
             holder.chatUserMessageTime.text =
                 mListMessagesCache[position].timeStamp.toString().asTime()
-
         } else {
-            holder.blockUserMessage.visibility = View.GONE
-            holder.blockReceivedMessage.visibility = View.VISIBLE
+            holder.blocUserMessage.visibility = View.GONE
+            holder.blocReceivedMessage.visibility = View.VISIBLE
             holder.chatReceivedMessage.text = mListMessagesCache[position].text
             holder.chatReceivedMessageTime.text =
                 mListMessagesCache[position].timeStamp.toString().asTime()
         }
     }
 
-    fun setList(list: List<CommonModel>) {
-        mListMessagesCache = list
-        notifyDataSetChanged()
+    fun addItemToBottom(
+        item: CommonModel,
+        onSuccess: () -> Unit
+    ) {
+        if (!mListMessagesCache.contains(item)) {
+            mListMessagesCache.add(item)
+            notifyItemInserted(mListMessagesCache.size)
+        }
+        onSuccess()
+    }
 
+    fun addItemToTop(
+        item: CommonModel,
+        onSuccess: () -> Unit
+    ) {
+        if (!mListMessagesCache.contains(item)) {
+            mListMessagesCache.add(item)
+            mListMessagesCache.sortBy { it.timeStamp.toString() }
+            notifyItemInserted(0)
+        }
+        onSuccess()
     }
 }
