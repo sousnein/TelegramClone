@@ -1,89 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/very_small_text"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_marginBottom="@dimen/very_small_text">
 
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/block_user_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/app_small_margin"
+        android:background="@drawable/bg_user_message"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/block_user_message"
+        <TextView
+            android:id="@+id/chat_user_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/app_small_margin"
-            android:background="@drawable/bg_user_message"
+            android:gravity="end"
+            android:maxWidth="300dp"
+            android:padding="@dimen/app_padding"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/chat_user_message_time"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="А ты знаешь миньонов?" />
+
+        <TextView
+            android:id="@+id/chat_user_message_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/app_small_margin"
+            android:gravity="end"
+            android:textColor="@color/super_green"
+            android:textSize="@dimen/very_small_text"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            tools:text="21:00" />
 
-            <TextView
-                android:id="@+id/chat_user_message"
-                android:layout_width="wrap_content"
-                android:maxWidth="300dp"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                android:padding="@dimen/app_padding"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/chat_user_message_time"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="А ты знаешь миньонов?" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/chat_user_message_time"
-                android:layout_marginEnd="@dimen/app_small_margin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                tools:text="21:00"
-                android:textSize="@dimen/very_small_text"
-                android:textColor="@color/super_green"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/block_received_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/app_small_margin"
+        android:layout_marginEnd="@dimen/very_small_text"
+        android:background="@drawable/bg_receiving_message"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/chat_received_message"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:padding="@dimen/app_padding"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/chat_received_message_time"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="нет" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/block_received_message"
+        <TextView
+            android:id="@+id/chat_received_message_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/app_small_margin"
-            android:layout_marginEnd="@dimen/very_small_text"
-            android:background="@drawable/bg_receiving_message"
+            android:layout_marginEnd="@dimen/app_small_margin"
+            android:gravity="end"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/very_small_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="21:00" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/block_received_image_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/app_small_margin"
+        android:layout_marginEnd="@dimen/very_small_text"
+        android:background="@drawable/bg_receiving_message"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/chat_received_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="300dp"
+            android:maxHeight="300dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"/>
 
-            <TextView
-                android:id="@+id/chat_received_message"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                android:padding="@dimen/app_padding"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/chat_received_message_time"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="нет" />
+        <TextView
+            android:id="@+id/chat_received_image_message_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/very_small_app_margin"
+            android:layout_marginEnd="@dimen/app_small_margin"
+            android:background="@drawable/bg_message_time"
+            android:gravity="end"
+            android:padding="1dp"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/very_small_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="21:00" />
 
-            <TextView
-                android:id="@+id/chat_received_message_time"
-                android:layout_marginEnd="@dimen/app_small_margin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                tools:text="21:00"
-                android:textSize="@dimen/very_small_text"
-                android:textColor="@color/grey"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/block_user_image_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/app_small_margin"
+        android:background="@drawable/bg_receiving_message"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/chat_user_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="300dp"
+            android:maxHeight="300dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
 
+        <TextView
+            android:id="@+id/chat_user_image_message_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/very_small_app_margin"
+            android:layout_marginEnd="@dimen/app_small_margin"
+            android:background="@drawable/bg_message_time"
+            android:gravity="end"
+            android:padding="1dp"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/very_small_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="21:00" />
 
-
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

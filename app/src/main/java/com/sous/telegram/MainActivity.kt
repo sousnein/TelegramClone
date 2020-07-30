@@ -58,14 +58,17 @@ class MainActivity : AppCompatActivity() {
         mAppDrawer = AppDrawer()
     }
 
-    override fun onStart() {
-        super.onStart()
+
+    override fun onResume() {
+        super.onResume()
         AppStates.updateState(AppStates.ONLINE)
+
     }
 
     override fun onStop() {
         super.onStop()
         AppStates.updateState(AppStates.OFFLINE)
+        hideKeyboard()
     }
 
     override fun onRequestPermissionsResult(

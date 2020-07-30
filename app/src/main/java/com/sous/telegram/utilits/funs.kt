@@ -59,7 +59,7 @@ fun ImageView.downloadAndSetImage(url: String) {
     Picasso.get()
         .load(url)
         .fit()
-        .placeholder(R.drawable.profile_pic)
+        .placeholder(R.drawable.default_img)
         .into(this)
 }
 
